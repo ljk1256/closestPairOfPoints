@@ -15,5 +15,12 @@ public class Main {
             coordinates[i][1] = random.nextInt(50);
         }
 
+
     }
+
+    // 두점 사이의 거리를 구하는 공식
+    public static double get_distance(int[][] coordinates, int x, int y) {
+        return Math.sqrt(Math.pow(coordinates[x][0] - coordinates[y][0], 2) + Math.pow(coordinates[x][1] - coordinates[y][1], 2));
+    }
+
 }
