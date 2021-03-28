@@ -15,8 +15,15 @@ public class Main {
             coordinates[i][1] = random.nextInt(50);
         }
 
+        Main closest_pair = new Main();
+        closest_pair.find_pair(coordinates);
+    }
+
+    public int[] find_pair(int[][] coordinates) {
+
 
     }
+
 
     // 두점 사이의 거리를 구하는 공식
     public static double get_distance(int[][] coordinates, int x, int y) {
