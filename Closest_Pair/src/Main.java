@@ -7,10 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int number_of_points = scanner.nextInt();
-
-        Main main = new Main();
         start(number_of_points);
-
     }
 
     public static void start(int number_of_points){
