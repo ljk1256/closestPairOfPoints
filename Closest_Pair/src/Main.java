@@ -29,10 +29,10 @@ public class Main {
         resultcoordinate = divideHalf(coordinates, 0, number_of_points);    // 최종 좌표 배열
         result_d = get_distance(resultcoordinate, 0, 1);      // 최종 좌표 거리
 
-        System.out.println("좌표는 (%d, %d) , (%d, %d) 거리는 %f 입니다. ", resultcoordinate[0][0], resultcoordinate[0][1], resultcoordinate[1][0], resultcoordinate[1][1], result_d);
+        System.out.printf("좌표는 (%d, %d) , (%d, %d) 거리는 %f 입니다. ", resultcoordinate[0][0], resultcoordinate[0][1], resultcoordinate[1][0], resultcoordinate[1][1], result_d);
     }
 
-    public static void divideHalf(int[][] coordinates, int left, int right) {
+    public static int[][] divideHalf(int[][] coordinates, int left, int right) {
         int[][] Answer = new int[2][2];
 
 
@@ -41,6 +41,7 @@ public class Main {
         int[][] smallest_center_points = find_smallest_in_center(coordinates, center_point, smallest_distance);
         if (smallest_distance < get_distance(smallest_center_points, 0, 1))
             Answer = smallest_center_points.clone();
+        return Answer;
     }
 
     // 중앙에서 최소 거리를 이루는 점의 쌍이 있는지 찾기
