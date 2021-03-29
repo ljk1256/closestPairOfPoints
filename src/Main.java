@@ -50,7 +50,7 @@ public class Main {
         return mincoordinate;
     }
 
-    public static int start(int number_of_points){
+    public static void start(int number_of_points){
         Random random = new Random();
 
         int[][] coordinates = new int[number_of_points][2];
