@@ -31,10 +31,10 @@ public class Main {
 
     public static int[][] divideHalf(int[][] coordinates, int left, int right) {
         int[][] Answer = new int[2][2];
+        double min1_distance, min2_distance;
 
 
-
-        double smallest_distance = Math.min(min1, min2);
+        double smallest_distance = Math.min(min1_distance, min2_distance);
         int[][] smallest_center_points = find_smallest_in_center(coordinates, center_point, smallest_distance);
         if (smallest_distance < get_distance(smallest_center_points, 0, 1))
             Answer = smallest_center_points.clone();
