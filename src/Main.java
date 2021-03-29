@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
@@ -36,10 +35,10 @@ public class Main {
         double min = 10000000000;    
         int [][] mincoordinate = new int[2][2];    // 최소거리 좌표 저장 배열
 
-        for(int i=left; i<right; i++){
-            for(int j=0; j<right; j++){
+        for(int i=left; i<right+1; i++){
+            for(int j=0; j<right+1; j++){
                 double d = get_distance(coordinates, i, j);
-                if(d <= min)
+                if(d <= min){
                     min = d;
                     mincoordinate[0][0] = coordinates[i][0];
                     mincoordinate[0][1] = coordinates[i][1];
@@ -61,6 +60,7 @@ public class Main {
             coordinates[i][0] = random.nextInt(50);
             coordinates[i][1] = random.nextInt(50);
         }
+        Arrays.sort(coordinates);
 
         resultcoordinate = divideHalf(coordinates, 0, number_of_points);    // 최종 좌표 배열
         result_d = get_distance(resultcoordinate, 0, 1);      // 최종 좌표 거리
