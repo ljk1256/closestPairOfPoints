@@ -16,20 +16,23 @@ public class Main {
         }
 
         Main closest_pair = new Main();
-        closest_pair.find_pair(coordinates);
+        closest_pair.start(coordinates);
     }
 
-    public int[] find_pair(int[][] coordinates) {  // void 형으로 바꿔도 될 것 같음!!
+    public void divideHalf(int[][] coordinates, int left, int right) {
         int[][] Answer = new int[2][2];
 
 
-        double smallest_distance = Math.min(left_distance, right_distance);
-        Answer = find_smallest_in_center(coordinates, center_point, smallest_distance);
+
+        double smallest_distance = Math.min(min1, min2);
+        int[][] smallest_center_points = find_smallest_in_center(coordinates, center_point, smallest_distance);
+        if (smallest_distance < get_distance(smallest_center_points, 0, 1))
+            Answer = smallest_center_points.clone();
     }
 
     public int[][] find_smallest_in_center(int[][] coordinates, int[] center_point, double max_distance) {
         double smallest_distance = max_distance;  // 최소 거리
-        int[][] smallest_points = new int[2][2];
+        int[][] smallest_points = new int[][]{{9999, 9999}, {9999, 9999}};  // 최소 거리를 이루는 좌표쌍
 
         for (int i = 0; i < coordinates.length; i++)  // 좌표 x의 최대값까지
             for (int j = i + 1; j < coordinates[0].length; j++) {  // i와 i+1이랑 비교
@@ -46,8 +49,8 @@ public class Main {
     }
 
     // 두점 사이의 거리를 구하는 공식
-    public static double get_distance(int[][] coordinates, int x, int y) {
-        return Math.sqrt(Math.pow(coordinates[x][0] - coordinates[y][0], 2) + Math.pow(coordinates[x][1] - coordinates[y][1], 2));
+    public static double get_distance(int[][] coordinates, int x1, int x2) {
+        return Math.sqrt(Math.pow(coordinates[x1][0] - coordinates[x2][0], 2) + Math.pow(coordinates[x1][1] - coordinates[x2][1], 2));
     }
 
 }
