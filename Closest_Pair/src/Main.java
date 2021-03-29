@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -17,7 +18,7 @@ public class Main {
 
     //분할,정복 재귀적 호출
     public static int[][] divideHalf(int[][] coordinates, int left, int right) {
-        int[][] Answer = new int[2][2];
+        int[][] Answer;
 
         if (right - left <= 5) {
             return closestPair(coordinates, left, right);
@@ -26,9 +27,10 @@ public class Main {
             int[][] min1 = divideHalf(coordinates, left, mid);
             int[][] min2 = divideHalf(coordinates, mid + 1, right);
 
-
+            Answer = get_distance(min1, 0, 1) < get_distance(min2, 0, 1) ? min1 : min2;
             double smallest_distance = Math.min(get_distance(min1, 0, 1), get_distance(min2, 0, 1));
-            int[][] smallest_center_points = find_smallest_in_center(coordinates, center_point, smallest_distance);
+
+            int[][] smallest_center_points = find_smallest_in_center(coordinates, mid, smallest_distance);
             if (smallest_distance < get_distance(smallest_center_points, 0, 1))
                 Answer = smallest_center_points.clone();
         }
@@ -39,8 +41,8 @@ public class Main {
         double min = 10000000;
         int[][] mincoordinate = new int[2][2];    // 최소거리 좌표 저장 배열
 
-        for (int i = left; i < right + 1; i++) {
-            for (int j = 0; j < right + 1; j++) {
+        for (int i = left; i < right; i++) {
+            for (int j = i + 1; j < right; j++) {
                 double d = get_distance(coordinates, i, j);
                 if (d <= min) {
                     min = d;
@@ -54,13 +56,13 @@ public class Main {
         return mincoordinate;
     }
 
-    public static int[][] find_smallest_in_center(int[][] coordinates, int[] center_point, double max_distance) {
+    public static int[][] find_smallest_in_center(int[][] coordinates, int mid, double max_distance) {
         double smallest_distance = max_distance;  // 최소 거리
         int[][] smallest_points = new int[][]{{9999, 9999}, {9999, 9999}};  // 최소 거리를 이루는 좌표쌍
 
         for (int i = 0; i < coordinates.length; i++)  // 좌표 x의 최대값까지
             for (int j = i + 1; j < coordinates[0].length; j++) {  // i와 i+1이랑 비교
-                if (coordinates[i][0] <= center_point[0] - max_distance && coordinates[i][0] >= center_point[0] + max_distance)
+                if (coordinates[i][0] <= coordinates[mid][0] - max_distance && coordinates[i][0] >= coordinates[mid][0] + max_distance)
                     if (smallest_distance > get_distance(coordinates, i, j)) {
                         smallest_distance = get_distance(coordinates, i, j);
                         smallest_points[0][0] = coordinates[i][0];
@@ -83,7 +85,15 @@ public class Main {
             coordinates[i][0] = random.nextInt(50);
             coordinates[i][1] = random.nextInt(50);
         }
-        Arrays.sort(coordinates);
+        Arrays.sort(coordinates, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if (o1[0] == o2[0])
+                    return o1[1] - o2[1];
+                else
+                    return o1[0] - o2[0];
+            }
+        });
 
         resultcoordinate = divideHalf(coordinates, 0, number_of_points);    // 최종 좌표 배열
         result_d = get_distance(resultcoordinate, 0, 1);      // 최종 좌표 거리
