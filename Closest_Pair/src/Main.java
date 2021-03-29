@@ -36,7 +36,7 @@ public class Main {
 
         for (int i = 0; i < coordinates.length; i++)  // 좌표 x의 최대값까지
             for (int j = i + 1; j < coordinates[0].length; j++) {  // i와 i+1이랑 비교
-                if (coordinates[i][0] <= center_point[0] - max_distance || coordinates[i][0] >= center_point[0] + max_distance)
+                if (coordinates[i][0] <= center_point[0] - max_distance && coordinates[i][0] >= center_point[0] + max_distance)
                     if (smallest_distance > get_distance(coordinates, i, j)) {
                         smallest_distance = get_distance(coordinates, i, j);
                         smallest_points[0][0] = coordinates[i][0];
