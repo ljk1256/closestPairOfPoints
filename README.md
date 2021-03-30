@@ -4,12 +4,21 @@
 
 최근접 점의 쌍을 찾는 분할 정복 알고리즘이다.
 
-최소 거리를 구하기 위해 점쌍을 저장할 2차원 배열(Arrays.sort(coordinates, new Comparator<int[]>()) , Random 함수를 통한 난수를 발생하여 x좌표값을 기준으로 정렬한다.
-~~~
-if (right - left + 1 <= 3) return closestPair(coordinates, left, right); 점의 개수가 2개나 3개일 때
-int[][] min1 = divideHalf // 분활된 왼쪽 부분
-int[][] min2 = divideHalf // 분활된 오른쪽 부분
-int mid = left + (right - left) / 2;  // 중앙값 인덱스
-Answer = smallest_center_points.clone(); //중앙 영역에 속하는 점들 중에서 최근접 점의 쌍을 찾아서 리턴한다.
-return Answer; 
-~~~
+우선, `main` 메소드에서 생성할 점의 수를 사용자로부터 입력받는다.
+
+`public static void start(int number_of_points)`에서, 
+좌표값을 저장할 2차원 배열 `coordinates`에 난수를 저장해 `Arrays.sort()` 메소드를 사용하여 x값을 기준으로 정렬하였다.
+
+`resultcoordinate`는 최근접 점을 이루는 점쌍을 저장할 2차원 배열이다.
+
+`divideHalf(int[][] coordinates, int left, int right)`는 배열을 왼쪽 부분과 오른쪽 부분으로 분할해 최근접 점의 쌍을 찾는 메소드이다.
+
+`closestPair(int[][] coordinates, int left, int right)`는 배열을 왼쪽 부분과 오른쪽 부분으로의 최소거리 좌표를 저장해 배열하는 메소드이다.
+
+`find_smallest_in_center(int[][] coordinates, int left, int right, int mid, double max_distance)` 는 중앙부분에서 최소를 찾는 메소드이다.
+
+또한 2차원 배열을 @Override를 통한 x좌표값을 기준으로 정렬하였다. 
+
+이렇게 모은 값들 중에서 최종 좌표 배열과 거리를 찾아 호출한다. 
+
+
