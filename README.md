@@ -1,4 +1,4 @@
-# Closest-pair-of-points
+# Closest pair of points
 
 ### 팀G  201301608 이재권  202001677 최종민  201801658 김현성
 
